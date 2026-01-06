@@ -227,14 +227,37 @@ npm run build
 
 ## Configuring Claude Code
 
-Add this to your Claude Code settings file (`~/.claude/settings.json`):
+Add the MCP server config to **`~/.claude.json`** (your user-level Claude Code config file).
+
+> **Important:** The config goes in `~/.claude.json`, NOT `~/.claude/settings.json` or `~/.claude/.mcp.json`. Run `/mcp` in Claude Code to verify the correct config location for your setup.
 
 ### If installed via npm (Option 1):
+
+Open `~/.claude.json` and add `hetzner` to the `mcpServers` object:
 
 ```json
 {
   "mcpServers": {
     "hetzner": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["hetzner-mcp-server"],
+      "env": {
+        "HETZNER_API_TOKEN": "your-api-token-here"
+      }
+    }
+  }
+}
+```
+
+If you already have other MCP servers configured (like `figma`), just add `hetzner` alongside them:
+
+```json
+{
+  "mcpServers": {
+    "figma": { ... },
+    "hetzner": {
+      "type": "stdio",
       "command": "npx",
       "args": ["hetzner-mcp-server"],
       "env": {
@@ -251,6 +274,7 @@ Add this to your Claude Code settings file (`~/.claude/settings.json`):
 {
   "mcpServers": {
     "hetzner": {
+      "type": "stdio",
       "command": "node",
       "args": ["/path/to/hetzner-mcp-server/dist/index.js"],
       "env": {
