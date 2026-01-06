@@ -72,6 +72,83 @@ Always check pricing with `hetzner_list_server_types` before creating servers, a
 
 ---
 
+## Hetzner MCP + Kamal = Your Own PaaS
+
+Combine this MCP with [Kamal](https://kamal-deploy.org/) (DHH's deployment tool) and the [kamal-deploy skill](https://github.com/nityeshaga/claude-code-essentials/tree/main/plugins/basics/skills/kamal-deploy) to get a complete deployment platform inside Claude Code.
+
+**The mental model:**
+- **Hetzner MCP** = Provisions the servers (the computers)
+- **Kamal** = Deploys your app to those servers (the software)
+- **Together** = Your own Vercel/Render/Hatchbox alternative
+
+### Feature Comparison
+
+| Feature | Hetzner MCP + Kamal | Hatchbox | Vercel | Render |
+|---------|---------------------|----------|--------|--------|
+| **Create/manage servers** | ✅ Via MCP | ✅ Web UI | ❌ Serverless | ✅ Managed |
+| **Deploy apps** | ✅ Kamal | ✅ Git push | ✅ Git push | ✅ Git push |
+| **Zero-downtime deploys** | ✅ | ✅ | ✅ | ✅ |
+| **SSL certificates** | ✅ Let's Encrypt | ✅ Auto | ✅ Auto | ✅ Auto |
+| **Databases** | ✅ Kamal accessories | ✅ Managed | ❌ External | ✅ Managed |
+| **Redis** | ✅ Kamal accessories | ✅ Managed | ❌ External | ✅ Managed |
+| **Background jobs** | ✅ Kamal workers | ✅ Sidekiq | ⚠️ Cron only | ✅ Workers |
+| **Rollback** | ✅ `kamal rollback` | ✅ One-click | ✅ One-click | ✅ One-click |
+| **Custom domains** | ✅ | ✅ | ✅ | ✅ |
+| **SSH access to server** | ✅ Full root | ✅ Limited | ❌ None | ❌ None |
+| **Docker support** | ✅ Native | ❌ No | ✅ Yes | ✅ Yes |
+| **Non-Ruby apps** | ✅ Any Docker app | ❌ Ruby only | ✅ Any | ✅ Any |
+| **Multiple apps per server** | ✅ Manual | ✅ Clusters | N/A | N/A |
+| **Web UI dashboard** | ❌ CLI only | ✅ | ✅ | ✅ |
+| **Automatic backups** | ❌ DIY | ✅ | N/A | ✅ |
+| **Managed security updates** | ❌ DIY | ✅ | ✅ | ✅ |
+| **Monitoring/alerts** | ❌ DIY | ✅ | ✅ | ✅ |
+
+### Cost Comparison (typical Rails app)
+
+| Platform | Monthly Cost | What You Get |
+|----------|--------------|--------------|
+| **Hetzner + Kamal** | ~€4-8/mo | Full server, unlimited apps |
+| **Hatchbox** | $10-29/mo + server | Managed Rails deployment |
+| **Vercel** | $20+/mo | Serverless, limited compute |
+| **Render** | $7-25/mo per service | Managed containers |
+
+### When to Use What
+
+**Choose Hetzner MCP + Kamal if you:**
+- Want full control over your infrastructure
+- Are comfortable with CLI (Claude helps!)
+- Want the cheapest option for production apps
+- Need to run any Docker-based app (not just Rails)
+- Want to learn how deployment actually works
+
+**Choose Hatchbox if you:**
+- Only deploy Rails apps
+- Want a polished web UI
+- Need team access management
+- Prefer fully managed backups/updates
+- Don't want to think about servers
+
+**Choose Vercel if you:**
+- Build Next.js/frontend apps
+- Want zero server management
+- Need edge functions/CDN
+- Don't need persistent servers
+
+**Choose Render if you:**
+- Want managed containers without complexity
+- Need managed databases included
+- Want simple scaling
+- Prefer web UI over CLI
+
+### Quick Start with Kamal
+
+1. Install the [kamal-deploy skill](https://github.com/nityeshaga/claude-code-essentials/tree/main/plugins/basics/skills/kamal-deploy) from claude-code-essentials
+2. Ask Claude: "Create a cx22 server with Ubuntu for my-app" (uses this MCP)
+3. Ask Claude: "Help me set up Kamal to deploy my Rails app to this server"
+4. Run `kamal setup` and you're live!
+
+---
+
 ## How Authentication Works
 
 ### The API Token
