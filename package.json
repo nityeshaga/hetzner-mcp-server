@@ -1,18 +1,44 @@
 {
   "name": "hetzner-mcp-server",
   "version": "1.0.0",
-  "description": "MCP server for Hetzner Cloud API integration",
+  "description": "MCP server for managing Hetzner Cloud infrastructure from Claude Code",
   "type": "module",
   "main": "dist/index.js",
+  "bin": {
+    "hetzner-mcp-server": "dist/index.js"
+  },
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
   },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "hetzner",
+    "cloud",
+    "claude",
+    "ai",
+    "server-management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nityeshaga/hetzner-mcp-server.git"
+  },
+  "homepage": "https://github.com/nityeshaga/hetzner-mcp-server#readme",
+  "bugs": {
+    "url": "https://github.com/nityeshaga/hetzner-mcp-server/issues"
+  },
+  "license": "MIT",
   "engines": {
     "node": ">=18"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
     "axios": "^1.7.9",

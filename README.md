@@ -118,11 +118,20 @@ Your API token is powerful - anyone with it can create/delete servers in your pr
 - npm
 - A Hetzner Cloud account with an API token
 
-### Steps
+### Option 1: Install from npm (Recommended)
 
 ```bash
-# Navigate to the project directory
-cd /Users/nityesh/Documents/GitHub/hetzner-mcp-server
+npm install -g hetzner-mcp-server
+```
+
+Then configure Claude Code to use it (see below).
+
+### Option 2: Clone and Build
+
+```bash
+# Clone the repository
+git clone https://github.com/nityeshaga/hetzner-mcp-server.git
+cd hetzner-mcp-server
 
 # Install dependencies
 npm install
@@ -137,12 +146,14 @@ npm run build
 
 Add this to your Claude Code settings file (`~/.claude/settings.json`):
 
+### If installed via npm (Option 1):
+
 ```json
 {
   "mcpServers": {
     "hetzner": {
-      "command": "node",
-      "args": ["/Users/nityesh/Documents/GitHub/hetzner-mcp-server/dist/index.js"],
+      "command": "npx",
+      "args": ["hetzner-mcp-server"],
       "env": {
         "HETZNER_API_TOKEN": "your-api-token-here"
       }
@@ -150,6 +161,24 @@ Add this to your Claude Code settings file (`~/.claude/settings.json`):
   }
 }
 ```
+
+### If cloned from GitHub (Option 2):
+
+```json
+{
+  "mcpServers": {
+    "hetzner": {
+      "command": "node",
+      "args": ["/path/to/hetzner-mcp-server/dist/index.js"],
+      "env": {
+        "HETZNER_API_TOKEN": "your-api-token-here"
+      }
+    }
+  }
+}
+```
+
+Replace `/path/to/hetzner-mcp-server` with the actual path where you cloned the repo.
 
 Replace `your-api-token-here` with your actual Hetzner API token.
 
