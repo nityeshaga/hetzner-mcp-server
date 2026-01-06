@@ -1,6 +1,12 @@
 # Hetzner MCP Server
 
+[![npm version](https://badge.fury.io/js/hetzner-mcp-server.svg)](https://www.npmjs.com/package/hetzner-mcp-server)
+
 An MCP server that lets Claude Code manage your Hetzner Cloud servers.
+
+```bash
+npm install -g hetzner-mcp-server
+```
 
 ---
 
